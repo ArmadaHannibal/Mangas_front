@@ -16,8 +16,6 @@ export default function Dashboard() {
 
         fetchSession();
     }, []);
-console.log('userLogin');
-console.log(userLogin);
     return (
         <div>
             <h1>Bienvenue, {user ? user.username : 'Utilisateur'}</h1>

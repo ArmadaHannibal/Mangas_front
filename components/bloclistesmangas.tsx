@@ -1,14 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Card, CardHeader, CardBody, Image } from "@nextui-org/react";
 import { CheckboxGroup, Checkbox } from "@nextui-org/react";
-import { Input, DatePicker, useCheckbox, Chip, VisuallyHidden, tv } from "@nextui-org/react";
-import { IoIosBookmark, IoIosEye, IoIosPlayCircle } from "react-icons/io";
-import { BsStarFill, BsEyeFill, BsCheckLg, BsChatDots, BsBookmarkFill, BsCalendar4Event, BsChevronDoubleRight, BsChevronDoubleLeft } from "react-icons/bs";
+import { Input, DatePicker, useCheckbox, tv } from "@nextui-org/react";
+import { BsStarFill, BsEyeFill, BsChevronDoubleRight, BsChevronDoubleLeft } from "react-icons/bs";
 import { PiStarLight } from "react-icons/pi";
-import { CheckIcon } from './CheckIcon';
-import { Console } from 'console';
 import { Button } from "@nextui-org/react";
 import "@/app/style/swiperstyle.css";
 
@@ -73,10 +70,6 @@ export const Bloclistesmangas = ({ mangas, commentaires }) => {
         }
     };
 
-    useEffect(() => {
-        filterDivsByGenre(selectedGenres);
-    }, [selectedGenres]);
-
     const variants = ["underlined"];
 
     const [selectedDate, setSelectedDate] = useState(null);
@@ -124,8 +117,6 @@ export const Bloclistesmangas = ({ mangas, commentaires }) => {
                 if (divDate) {
                     const [year, month, day] = divDate.split('-');
                     const divFormattedDate = `${day}/${month}/${year}`;
-                    console.log(formattedDate);
-                    console.log(divFormattedDate);
 
                     div.style.display = divFormattedDate === formattedDate ? 'block' : 'none';
                     padition.style.display = divFormattedDate === formattedDate ? 'block' : 'none';
@@ -150,12 +141,11 @@ export const Bloclistesmangas = ({ mangas, commentaires }) => {
     };
 
     useEffect(() => {
+        filterDivsByGenre(selectedGenres);
         filterDivsByDate(selectedDate);
-    }, [selectedDate]);
-
-    useEffect(() => {
         filterDivsByTitle(searchTitle);
-    }, [searchTitle]);
+    }, [selectedGenres, selectedDate, searchTitle]);
+    
 
     const checkbox = tv({
         slots: {
@@ -214,7 +204,6 @@ export const Bloclistesmangas = ({ mangas, commentaires }) => {
         const pageElement = document.getElementById('page');
         if (pageElement) {
             // Debug log to verify state change
-            console.log("Current Page:", currentPage);
             pageElement.innerText = `Page ${currentPage}`;
         }
     }
@@ -253,7 +242,7 @@ export const Bloclistesmangas = ({ mangas, commentaires }) => {
                                         onValueChange={setSelected}
                                     >
                                         {Array.from(genresSet).map((genre, index) => (
-                                            <Checkbox key={index} value={genre} onChange={handleCheckboxChange}>{genre}</Checkbox>
+                                            <Checkbox key={index} value={genre}>{genre}</Checkbox>
                                         ))}
                                     </CheckboxGroup>
                                 </div>
