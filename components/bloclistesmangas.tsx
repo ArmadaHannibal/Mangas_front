@@ -11,11 +11,11 @@ import "@/app/style/swiperstyle.css";
 
 const normalizeGenres = (genresString: string): Set<string> => {
     const genres = new Set<string>();
-    const normalizedGenres = genresString.split('-').map(genre => {
+    const normalizedGenres = genresString.split("-").map(genre => {
         // Supprimer les espaces autour du genre
         const trimmedGenre = genre.trim();
         // Gérer les préfixes spécifiques
-        let normalizedGenre = trimmedGenre.replace(/^(d'|l'|j')/i, '');
+        let normalizedGenre = trimmedGenre.replace(/^(d'|l'|j')/i, "");
         // Convertir en minuscules
         normalizedGenre = normalizedGenre.toLowerCase();
         return normalizedGenre;
@@ -48,23 +48,23 @@ export const Bloclistesmangas = ({ mangas, commentaires }) => {
     };
 
     const filterDivsByGenre = (genreList) => {
-        const divs = document.querySelectorAll('.elementListesMangas');
-        const padition = document.querySelector('.contentPagination');
+        const divs = document.querySelectorAll(".elementListesMangas");
+        const padition = document.querySelector(".contentPagination");
 
         if (genreList.length === 0) {
             divs.forEach((div) => {
-                div.style.display = 'block';
-                padition.style.display = 'block';
+                div.style.display = "block";
+                padition.style.display = "block";
             });
         } else {
             divs.forEach((div) => {
-                const divGenre = div.getAttribute('data-genre');
+                const divGenre = div.getAttribute("data-genre");
                 if (divGenre) {
 
-                    const divGenreArray = divGenre.split('-');
+                    const divGenreArray = divGenre.split("-");
                     const shouldShow = genreList.some((genre) => divGenreArray.includes(genre));
-                    div.style.display = shouldShow ? 'block' : 'none';
-                    padition.style.display = shouldShow ? 'block' : 'none';
+                    div.style.display = shouldShow ? "block" : "none";
+                    padition.style.display = shouldShow ? "block" : "none";
                 }
             });
         }
@@ -74,25 +74,25 @@ export const Bloclistesmangas = ({ mangas, commentaires }) => {
 
     const [selectedDate, setSelectedDate] = useState(null);
 
-    const [searchTitle, setSearchTitle] = useState('');
+    const [searchTitle, setSearchTitle] = useState("");
 
     // Fonction pour formater la date au format JJ/MM/AAAA
     const formatDate = (date) => {
-        if (!(date instanceof Date)) return '';
-        const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0'); // Les mois commencent à 0
+        if (!(date instanceof Date)) return "";
+        const day = String(date.getDate()).padStart(2, "0");
+        const month = String(date.getMonth() + 1).padStart(2, "0"); // Les mois commencent à 0
         const year = date.getFullYear();
         return `${day}/${month}/${year}`;
     };
 
     // Fonction pour filtrer les éléments par date
     const filterDivsByDate = (date) => {
-        const divs = document.querySelectorAll('.elementListesMangas');
-        const padition = document.querySelector('.contentPagination');
+        const divs = document.querySelectorAll(".elementListesMangas");
+        const padition = document.querySelector(".contentPagination");
         if (!date) {
             divs.forEach((div) => {
-                div.style.display = 'block';
-                padition.style.display = 'block';
+                div.style.display = "block";
+                padition.style.display = "block";
             });
         } else {
             let formattedDate = ""
@@ -113,13 +113,13 @@ export const Bloclistesmangas = ({ mangas, commentaires }) => {
             }
 
             divs.forEach((div) => {
-                const divDate = div.getAttribute('data-date');
+                const divDate = div.getAttribute("data-date");
                 if (divDate) {
-                    const [year, month, day] = divDate.split('-');
+                    const [year, month, day] = divDate.split("-");
                     const divFormattedDate = `${day}/${month}/${year}`;
 
-                    div.style.display = divFormattedDate === formattedDate ? 'block' : 'none';
-                    padition.style.display = divFormattedDate === formattedDate ? 'block' : 'none';
+                    div.style.display = divFormattedDate === formattedDate ? "block" : "none";
+                    padition.style.display = divFormattedDate === formattedDate ? "block" : "none";
                 }
             });
         }
@@ -127,15 +127,15 @@ export const Bloclistesmangas = ({ mangas, commentaires }) => {
 
     // Fonction pour filtrer les éléments par titre
     const filterDivsByTitle = (title) => {
-        const divs = document.querySelectorAll('.elementListesMangas');
-        const padition = document.querySelector('.contentPagination');
+        const divs = document.querySelectorAll(".elementListesMangas");
+        const padition = document.querySelector(".contentPagination");
         const searchTitleLower = title.toLowerCase();
         divs.forEach((div) => {
-            const divTitle = div.getAttribute('data-titre');
+            const divTitle = div.getAttribute("data-titre");
             if (divTitle) {
                 const divTitleLower = divTitle.toLowerCase();
-                div.style.display = divTitleLower.includes(searchTitleLower) ? 'block' : 'none';
-                padition.style.display = divTitleLower.includes(searchTitleLower) ? 'block' : 'none';
+                div.style.display = divTitleLower.includes(searchTitleLower) ? "block" : "none";
+                padition.style.display = divTitleLower.includes(searchTitleLower) ? "block" : "none";
             }
         });
     };
@@ -200,8 +200,8 @@ export const Bloclistesmangas = ({ mangas, commentaires }) => {
         }
     };
 
-    if (document.getElementById('page')) {
-        const pageElement = document.getElementById('page');
+    if (document.getElementById("page")) {
+        const pageElement = document.getElementById("page");
         if (pageElement) {
             // Debug log to verify state change
             pageElement.innerText = `Page ${currentPage}`;
@@ -209,19 +209,19 @@ export const Bloclistesmangas = ({ mangas, commentaires }) => {
     }
 
     return (
-        <div className='mx-auto' style={{ maxWidth: '79rem', }}>
-            <div className='flex flex-row space-x-5'>
-                <div className='w-3 h-9 bg-blue-700'></div>
-                <h2 className='text-2xl font-bold mb-5 elmentborder'>Liste des Mangas</h2>
+        <div className="mx-auto" style={{ maxWidth: "79rem", }}>
+            <div className="flex flex-row space-x-5">
+                <div className="w-3 h-9 bg-blue-700"></div>
+                <h2 className="text-2xl font-bold mb-5 elmentborder">Liste des Mangas</h2>
             </div>
             <div>
-                <div className='flex' style={{ gap: '4rem', }}>
-                    <div style={{ width: '19rem', height: '32rem', borderRadius: '15px', padding: '1rem', boxShadow: 'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px', }}>
-                        <div className='mb-4'>
-                            <div className='font-semibold'>Filtre : </div>
+                <div className="flex" style={{ gap: "4rem", }}>
+                    <div style={{ width: "19rem", height: "32rem", borderRadius: "15px", padding: "1rem", boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px", }}>
+                        <div className="mb-4">
+                            <div className="font-semibold">Filtre : </div>
                         </div>
-                        <div className='mb-4'>
-                            <div className='font-semibold'>Titre : </div>
+                        <div className="mb-4">
+                            <div className="font-semibold">Titre : </div>
                             <div>
                                 <div className="w-full flex flex-col gap-4">
                                     {variants.map((variant) => (
@@ -232,9 +232,9 @@ export const Bloclistesmangas = ({ mangas, commentaires }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className='mb-4'>
+                        <div className="mb-4">
                             <div>Genres : </div>
-                            <div className='mt-2 scrollGenre' style={{ height: '13rem', overflowY: 'scroll', overflowX: 'hidden', width: '14rem', }}>
+                            <div className="mt-2 scrollGenre" style={{ height: "13rem", overflowY: "scroll", overflowX: "hidden", width: "14rem", }}>
                                 <div className="flex flex-col gap-3">
                                     <CheckboxGroup
                                         color="warning"
@@ -242,20 +242,20 @@ export const Bloclistesmangas = ({ mangas, commentaires }) => {
                                         onValueChange={setSelected}
                                     >
                                         {Array.from(genresSet).map((genre, index) => (
-                                            <Checkbox key={index} value={genre}>{genre}</Checkbox>
+                                            <Checkbox key={index} value={genre} onChange={handleCheckboxChange}>{genre}</Checkbox>
                                         ))}
                                     </CheckboxGroup>
                                 </div>
                             </div>
                         </div>
-                        <div className='mb-4'>
+                        <div className="mb-4">
                             <div>Date : </div>
                             <div>
                                 <DatePicker onChange={(date) => setSelectedDate(date)} className="max-w-[284px]" />
                             </div>
                         </div>
                     </div>
-                    <div className='flex flex-col' style={{ width: '80rem', }}>
+                    <div className="flex flex-col" style={{ width: "80rem", }}>
                         <div className="grid grid-cols-3 gap-3" >
                             {currentMangas.length === 0 ? (
                                 <div>Aucun manga disponible pour le moment.</div>
@@ -268,15 +268,15 @@ export const Bloclistesmangas = ({ mangas, commentaires }) => {
                                     const elementsListeMangas = [];
                                     for (let i = 0; i < maxElementsListeMangas; i++) {
                                         if (i < nombreListeMangas) {
-                                            elementsListeMangas.push(<div key={i} className="normal-element"><BsStarFill className='text-yellow-500 w-4 h-4' /></div>);
+                                            elementsListeMangas.push(<div key={i} className="normal-element"><BsStarFill className="text-yellow-500 w-4 h-4" /></div>);
                                         } else {
-                                            elementsListeMangas.push(<div key={i} className="extra-element"><PiStarLight className='w-4 h-4' /></div>);
+                                            elementsListeMangas.push(<div key={i} className="extra-element"><PiStarLight className="w-4 h-4" /></div>);
                                         }
                                     }
                                     const genres = manga.genre_manga
                                         .toLowerCase() // Mettre en minuscules
-                                        .replace(/(?:d'|l'|j'|t')/g, '') // Supprimer d', l', j', t'
-                                        .replace(/\s+/g, '') // Remplacer les espaces par des tirets
+                                        .replace(/(?:d'|l'|j'|t')/g, "") // Supprimer d', l', j', t'
+                                        .replace(/\s+/g, "") // Remplacer les espaces par des tirets
                                     return (
                                         <Card key={manga.id}
                                             data-genre={genres}
@@ -284,7 +284,7 @@ export const Bloclistesmangas = ({ mangas, commentaires }) => {
                                             data-titre={manga.title}
                                             className="py-4 elementListesMangas">
                                             <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-                                                <div className='flex flex-row space-x-2 items-center'>
+                                                <div className="flex flex-row space-x-2 items-center">
                                                     <div><BsEyeFill /></div>
                                                     <div className="text-tiny uppercase font-bold">{manga.vue_manga}</div>
                                                 </div>
@@ -311,12 +311,12 @@ export const Bloclistesmangas = ({ mangas, commentaires }) => {
                                 })
                             )}
                         </div>
-                        <div className="flex contentPagination flex-row space-x-5 justify-end mx-auto pagination mt-5 items-center font-medium" style={{ maxWidth: '77rem' }}>
-                            <Button color={currentPage === 1 ? 'default' : 'warning'} onClick={handlePrevPage} disabled={currentPage === 1}>
+                        <div className="flex contentPagination flex-row space-x-5 justify-end mx-auto pagination mt-5 items-center font-medium" style={{ maxWidth: "77rem" }}>
+                            <Button color={currentPage === 1 ? "default" : "warning"} onClick={handlePrevPage} disabled={currentPage === 1}>
                                 <BsChevronDoubleLeft />
                             </Button>
-                            <span id='page'></span>
-                            <Button color={currentPage === Math.ceil(mangas.length / mangasPerPage) ? 'default' : 'warning'} onClick={handleNextPage}
+                            <span id="page"></span>
+                            <Button color={currentPage === Math.ceil(mangas.length / mangasPerPage) ? "default" : "warning"} onClick={handleNextPage}
                                 disabled={currentPage === Math.ceil(mangas.length / mangasPerPage)}>
                                 <BsChevronDoubleRight />
                             </Button>

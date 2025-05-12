@@ -1,31 +1,28 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { Image } from '@nextui-org/react';
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React, { useState, useEffect } from "react";
+import { Image } from "@nextui-org/react";
 
 import { PiPawPrintFill } from "react-icons/pi";
-import { SlArrowRight } from "react-icons/sl";
 import { Select, SelectItem, Button, DatePicker, Chip } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
 import { SlMagnifier } from "react-icons/sl";
 import { IoCalendarClear } from "react-icons/io5";
 import { PiStarLight } from "react-icons/pi";
-import { IoIosBookmark, IoIosEye, IoIosPlayCircle } from "react-icons/io";
+import { IoIosEye } from "react-icons/io";
 import { BsArrowCounterclockwise, BsStarFill } from "react-icons/bs";
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
+import "swiper/css";
+import "swiper/css/navigation";
 
-import '../app/style/swiperstylenewandtop.css';
+import "../app/style/swiperstylenewandtop.css";
 
 // import required modules
-import { Navigation, Pagination, Mousewheel, Keyboard, Autoplay } from 'swiper/modules';
+import { Navigation, Pagination, Mousewheel, Keyboard, Autoplay } from "swiper/modules";
 
 
 export const Blocderniertopnote = ({ mangas, commentaires }) => {
-    const img = document.querySelectorAll('.contentimgtop10');
-    const [searchTitle, setSearchTitle] = useState('');
+    const img = document.querySelectorAll(".contentimgtop10");
+    const [searchTitle, setSearchTitle] = useState("");
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedKeys, setSelectedKeys] = React.useState(new Set(["mangas"]));
     const [selectedCategorie, setSelectedCategorie] = useState<string[]>([]);
@@ -41,7 +38,7 @@ export const Blocderniertopnote = ({ mangas, commentaires }) => {
                 const childElement = children[i];
 
                 const parent = childElement.parentElement;
-                const parenttoparent = parent?.parentElement?.querySelector('.contentdetailtop10');
+                const parenttoparent = parent?.parentElement?.querySelector(".contentdetailtop10");
                 parenttoparent.style.height = `${childElement.offsetHeight}px`;
             }
         });
@@ -66,24 +63,24 @@ export const Blocderniertopnote = ({ mangas, commentaires }) => {
 
     // Fonction pour filtrer les éléments par titre
     const filterDivsByTitle = (title) => {
-        const divs = document.querySelectorAll('.elementListesMangas');
+        const divs = document.querySelectorAll(".elementListesMangas");
         const searchTitleLower = title.toLowerCase();
         divs.forEach((div) => {
-            const divTitle = div.getAttribute('data-titre');
+            const divTitle = div.getAttribute("data-titre");
             if (divTitle) {
                 const divTitleLower = divTitle.toLowerCase();
-                div.style.display = divTitleLower.includes(searchTitleLower) ? 'flex' : 'none';
+                div.style.display = divTitleLower.includes(searchTitleLower) ? "flex" : "none";
             }
         });
     };
 
     // Fonction pour filtrer les éléments par date
     const filterDivsByDate = (date) => {
-        const divs = document.querySelectorAll('.elementListesMangas');
+        const divs = document.querySelectorAll(".elementListesMangas");
 
         if (!date) {
             divs.forEach((div) => {
-                div.style.display = 'flex';
+                div.style.display = "flex";
             });
         } else {
             let formattedDate = ""
@@ -104,11 +101,11 @@ export const Blocderniertopnote = ({ mangas, commentaires }) => {
             }
 
             divs.forEach((div) => {
-                const divDate = div.getAttribute('data-date');
+                const divDate = div.getAttribute("data-date");
                 if (divDate) {
-                    const [year, month, day] = divDate.split('-');
+                    const [year, month, day] = divDate.split("-");
                     const divFormattedDate = `${day}/${month}/${year}`;
-                    div.style.display = divFormattedDate === formattedDate ? 'flex' : 'none';
+                    div.style.display = divFormattedDate === formattedDate ? "flex" : "none";
                 }
             });
         }
@@ -120,33 +117,33 @@ export const Blocderniertopnote = ({ mangas, commentaires }) => {
     };
 
     const allview = () => {
-        const divs = document.querySelectorAll('.elementListesMangas');
+        const divs = document.querySelectorAll(".elementListesMangas");
 
         if (divs) {
             divs.forEach((div) => {
-                div.style.display = 'flex';
+                div.style.display = "flex";
             });
         }
     };
 
     const filterDivsByGenre = (genreList) => {
-        const divs = document.querySelectorAll('.elementListesMangas');
+        const divs = document.querySelectorAll(".elementListesMangas");
 
         if (genreList.length === 0) {
             divs.forEach((div) => {
-                div.style.display = 'flex';
+                div.style.display = "flex";
             });
         } else {
             divs.forEach((div) => {
-                const divGenre = div.getAttribute('data-genre').toLowerCase();
+                const divGenre = div.getAttribute("data-genre").toLowerCase();
                 if (divGenre) {
                     let Category = genreList[0];
-                    const divGenreArray = divGenre.split('-');
+                    const divGenreArray = divGenre.split("-");
                     const shouldShow = divGenreArray.includes(Category);
                     console.log(divGenreArray);
                     console.log(shouldShow);
 
-                    div.style.display = shouldShow ? 'flex' : 'none';
+                    div.style.display = shouldShow ? "flex" : "none";
                 }
             });
         }
@@ -169,12 +166,12 @@ export const Blocderniertopnote = ({ mangas, commentaires }) => {
     return (
         <div>
             <div className="flex flex-row justify-between w-full contentglobalderniersortie space-x-5 mb-20">
-                <div className='contentone'>
+                <div className="contentone">
                     <div>
-                        <div className='flex justify-between'>
-                            <div className='flex flex-row space-x-5'>
-                                <div className='w-3 h-9 bg-blue-700'></div>
-                                <h2 className='text-2xl font-bold mb-5 elmentborder'>DERNIERS SORTIES</h2>
+                        <div className="flex justify-between">
+                            <div className="flex flex-row space-x-5">
+                                <div className="w-3 h-9 bg-blue-700"></div>
+                                <h2 className="text-2xl font-bold mb-5 elmentborder">DERNIERS SORTIES</h2>
                             </div>
                             <div>
                                 <Button color="primary">
@@ -183,7 +180,7 @@ export const Blocderniertopnote = ({ mangas, commentaires }) => {
                             </div>
                         </div>
 
-                        <div className='contentdernierfiltre flex flex-row space-x-4 mb-4'>
+                        <div className="contentdernierfiltre flex flex-row space-x-4 mb-4">
                             <div>
                                 <div>Titre : </div>
                                 <div>
@@ -223,7 +220,7 @@ export const Blocderniertopnote = ({ mangas, commentaires }) => {
                             </div>
                             <div>
                                 <div>Catégorie : </div>
-                                <div className='flex flex-row space-x-2'>
+                                <div className="flex flex-row space-x-2">
                                     <div>
                                         <Select
                                             className="max-w-xs"
@@ -255,8 +252,8 @@ export const Blocderniertopnote = ({ mangas, commentaires }) => {
                             </div>
                         </div>
 
-                        <div className='newsmanga derniersortie relative'>
-                            <div className='flex flex-col space-y-5'>
+                        <div className="newsmanga derniersortie relative">
+                            <div className="flex flex-col space-y-5">
                                 {mangas.map(manga => {
                                     if (manga.id < 10) {
                                         const mangaComment = commentaires.find(comment => comment.manga === manga.id);
@@ -266,9 +263,9 @@ export const Blocderniertopnote = ({ mangas, commentaires }) => {
 
                                         for (let i = 0; i < maxElements; i++) {
                                             if (i < nombre) {
-                                                elements.push(<div key={i} className="normal-element"><BsStarFill className='text-yellow-500 w-5 h-5' /></div>);
+                                                elements.push(<div key={i} className="normal-element"><BsStarFill className="text-yellow-500 w-5 h-5" /></div>);
                                             } else {
-                                                elements.push(<div key={i} className="extra-element"><PiStarLight className='w-5 h-5' /></div>);
+                                                elements.push(<div key={i} className="extra-element"><PiStarLight className="w-5 h-5" /></div>);
                                             }
                                         }
 
@@ -276,55 +273,55 @@ export const Blocderniertopnote = ({ mangas, commentaires }) => {
                                             <div key={manga.id}
                                                 data-genre={manga.categorie_manga}
                                                 data-date={manga.publication_date}
-                                                data-titre={manga.title} className='flex flex-row elementListesMangas'>
-                                                <div className='relative contentImages'>
-                                                    <div className='contentimgtop'>
+                                                data-titre={manga.title} className="flex flex-row elementListesMangas">
+                                                <div className="relative contentImages">
+                                                    <div className="contentimgtop">
                                                         <Image src={`http://127.0.0.1:8000${manga.cover_image}`} width={2000} height={2000} alt={manga.title} />
                                                     </div>
                                                 </div>
-                                                <div className='flex flex-col space-y-2 contentcardlistmangas'>
+                                                <div className="flex flex-col space-y-2 contentcardlistmangas">
                                                     <div>
                                                         {manga.title.length > 18 ? (
-                                                            <span className='text-sm w-full font-medium'>{manga.title.slice(0, 50)}...</span>
+                                                            <span className="text-sm w-full font-medium">{manga.title.slice(0, 50)}...</span>
                                                         ) : (
-                                                            <span className='text-sm w-full font-medium'>{manga.title}</span>
+                                                            <span className="text-sm w-full font-medium">{manga.title}</span>
                                                         )}
                                                     </div>
-                                                    <div className='flex justify-between'>
+                                                    <div className="flex justify-between">
                                                         <div>
                                                             {manga.saison_manga >= 1 ? (
-                                                                <span className='text-base'>
-                                                                    {manga.saison_manga} {manga.saison_manga > 1 ? ('saisons') : ('saison')}
+                                                                <span className="text-base">
+                                                                    {manga.saison_manga} {manga.saison_manga > 1 ? ("saisons") : ("saison")}
                                                                 </span>
                                                             ) : (
-                                                                <span className='text-base'>Film</span>
+                                                                <span className="text-base">Film</span>
                                                             )}
                                                         </div>
-                                                        <div className='flex flex-row items-center space-x-3'>
+                                                        <div className="flex flex-row items-center space-x-3">
                                                             <div><IoIosEye /></div>
-                                                            {manga.vue_manga != 0 ? <div className='text-sm'>{manga.vue_manga}</div> : <div className='text-sm'>0</div>}
+                                                            {manga.vue_manga != 0 ? <div className="text-sm">{manga.vue_manga}</div> : <div className="text-sm">0</div>}
                                                         </div>
                                                     </div>
-                                                    <div className='categorytopenote'>
-                                                        <div className='flex flex-row space-x-4'>
-                                                            {manga.genre_manga.split(' - ').map((genre, idx) => (
+                                                    <div className="categorytopenote">
+                                                        <div className="flex flex-row space-x-4">
+                                                            {manga.genre_manga.split(" - ").map((genre, idx) => (
                                                                 idx < 4 ? <Chip key={idx} id={idx} color="warning" variant="shadow">{genre}</Chip> : null
                                                             ))}
                                                         </div>
                                                     </div>
-                                                    <div className='flex justify-between'>
-                                                        <div className='flex flex-row items-center space-x-3'>
+                                                    <div className="flex justify-between">
+                                                        <div className="flex flex-row items-center space-x-3">
                                                             <div><IoCalendarClear /></div>
-                                                            <div className='text-sm'>{manga.publication_date}</div>
+                                                            <div className="text-sm">{manga.publication_date}</div>
                                                         </div>
                                                         <div>
-                                                            <div className='flex flex-row space-x-1'>
+                                                            <div className="flex flex-row space-x-1">
                                                                 {elements}
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className='flex items-center justify-center borderbgtopnote'></div>
+                                                <div className="flex items-center justify-center borderbgtopnote"></div>
                                             </div>
                                         )
                                     }
@@ -334,12 +331,12 @@ export const Blocderniertopnote = ({ mangas, commentaires }) => {
                         </div>
                     </div>
                 </div>
-                <div className='flex flex-col space-y-10 contenttwo'>
-                    <div className='scrollelemnt'>
-                        <div className='flex justify-between'>
-                            <div className='flex flex-row space-x-5'>
-                                <div className='w-3 h-9 bg-blue-700'></div>
-                                <h2 className='text-2xl font-bold mb-5'>TOP 10 NOTES</h2>
+                <div className="flex flex-col space-y-10 contenttwo">
+                    <div className="scrollelemnt">
+                        <div className="flex justify-between">
+                            <div className="flex flex-row space-x-5">
+                                <div className="w-3 h-9 bg-blue-700"></div>
+                                <h2 className="text-2xl font-bold mb-5">TOP 10 NOTES</h2>
                             </div>
                             <div>
                                 <Button color="primary">
@@ -348,8 +345,8 @@ export const Blocderniertopnote = ({ mangas, commentaires }) => {
                             </div>
                         </div>
 
-                        <div className='contentstopnote'>
-                            <div className='grid grid-cols-2 gap-2 pr-2 topnote'>
+                        <div className="contentstopnote">
+                            <div className="grid grid-cols-2 gap-2 pr-2 topnote">
                                 {mangas.map(manga => {
                                     if (manga.id < 5) {
                                         const mangaComment = commentaires.find(comment => comment.manga === manga.id);
@@ -359,34 +356,34 @@ export const Blocderniertopnote = ({ mangas, commentaires }) => {
 
                                         for (let i = 0; i < maxElements; i++) {
                                             if (i < nombre) {
-                                                elements.push(<div key={i} className="normal-element"><BsStarFill className='text-yellow-500 w-5 h-5' /></div>);
+                                                elements.push(<div key={i} className="normal-element"><BsStarFill className="text-yellow-500 w-5 h-5" /></div>);
                                             } else {
-                                                elements.push(<div key={i} className="extra-element"><PiStarLight className='w-5 h-5' /></div>);
+                                                elements.push(<div key={i} className="extra-element"><PiStarLight className="w-5 h-5" /></div>);
                                             }
                                         }
                                         return (
-                                            <div key={manga.id} className='relative' style={{ height: '19rem', }}>
-                                                <div className='relative' style={{ width: '100%' }}>
+                                            <div key={manga.id} className="relative" style={{ height: "19rem", }}>
+                                                <div className="relative" style={{ width: "100%" }}>
                                                     <div>
-                                                        <Image src={`http://127.0.0.1:8000${manga.cover_image}`} className='rounded-md object-cover' style={{ borderRadius: '10px', width: '100%', height: '19rem', }} width={2000} height={2000} alt={manga.title} />
+                                                        <Image src={`http://127.0.0.1:8000${manga.cover_image}`} className="rounded-md object-cover" style={{ borderRadius: "10px", width: "100%", height: "19rem", }} width={2000} height={2000} alt={manga.title} />
                                                     </div>
                                                 </div>
-                                                <div className='absolute text-white contentstop'>
-                                                    <div className='' style={{ width: '100%' }}>
+                                                <div className="absolute text-white contentstop">
+                                                    <div className="" style={{ width: "100%" }}>
                                                         {manga.title.length > 18 ? (
-                                                            <span className='text-lg w-full font-medium'>{manga.title.slice(0, 20)}...</span>
+                                                            <span className="text-lg w-full font-medium">{manga.title.slice(0, 20)}...</span>
                                                         ) : (
-                                                            <span className='text-lg w-full font-medium'>{manga.title}</span>
+                                                            <span className="text-lg w-full font-medium">{manga.title}</span>
                                                         )}
                                                     </div>
 
                                                     <div>
-                                                        <div className='flex flex-row space-x-1'>
+                                                        <div className="flex flex-row space-x-1">
                                                             {elements}
                                                         </div>
                                                     </div>
                                                     <div>
-                                                        <div className='flex flex-row space-x-3 note'>
+                                                        <div className="flex flex-row space-x-3 note">
                                                             <div>Note : </div>
                                                             {commentaires.length === 0 ? (
                                                                 <div>0</div>
@@ -396,7 +393,7 @@ export const Blocderniertopnote = ({ mangas, commentaires }) => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className='absolute bg-black ' style={{ width: '15.9rem', height: '6rem', top: '13rem', zIndex: '10', opacity: '0.6', borderBottomRightRadius: '10px', borderBottomLeftRadius: '10px' }}></div>
+                                                <div className="absolute bg-black " style={{ width: "15.9rem", height: "6rem", top: "13rem", zIndex: "10", opacity: "0.6", borderBottomRightRadius: "10px", borderBottomLeftRadius: "10px" }}></div>
                                             </div>
                                         )
                                     }
@@ -406,11 +403,11 @@ export const Blocderniertopnote = ({ mangas, commentaires }) => {
                         </div>
                     </div>
 
-                    <div className='scrollelemnt'>
-                        <div className='flex justify-between'>
-                            <div className='flex flex-row space-x-5'>
-                                <div className='w-3 h-9 bg-blue-700'></div>
-                                <h2 className='text-2xl font-bold mb-5'>TOP 10 VUES</h2>
+                    <div className="scrollelemnt">
+                        <div className="flex justify-between">
+                            <div className="flex flex-row space-x-5">
+                                <div className="w-3 h-9 bg-blue-700"></div>
+                                <h2 className="text-2xl font-bold mb-5">TOP 10 VUES</h2>
                             </div>
                             <div>
                                 <Button color="primary">
@@ -419,33 +416,33 @@ export const Blocderniertopnote = ({ mangas, commentaires }) => {
                             </div>
                         </div>
 
-                        <div className='contentstopnote'>
-                            <div className='grid grid-cols-2 gap-2 pr-2 topnote'>
+                        <div className="contentstopnote">
+                            <div className="grid grid-cols-2 gap-2 pr-2 topnote">
                                 {mangas.map(manga => (
                                     manga.id < 5 ?
-                                        <div key={manga.id} className='relative' style={{ height: '19rem', }}>
-                                            <div className='relative' style={{ width: '100%' }}>
+                                        <div key={manga.id} className="relative" style={{ height: "19rem", }}>
+                                            <div className="relative" style={{ width: "100%" }}>
                                                 <div>
-                                                    <Image src={`http://127.0.0.1:8000${manga.cover_image}`} className='rounded-md object-cover' style={{ borderRadius: '10px', width: '100%', height: '19rem', }} width={2000} height={2000} alt={manga.title} />
+                                                    <Image src={`http://127.0.0.1:8000${manga.cover_image}`} className="rounded-md object-cover" style={{ borderRadius: "10px", width: "100%", height: "19rem", }} width={2000} height={2000} alt={manga.title} />
                                                 </div>
                                             </div>
-                                            <div className='absolute text-white contentstop'>
-                                                <div className='' style={{ width: '100%' }}>
+                                            <div className="absolute text-white contentstop">
+                                                <div className="" style={{ width: "100%" }}>
                                                     {manga.title.length > 18 ? (
-                                                        <span className='text-lg w-full font-medium'>{manga.title.slice(0, 20)}...</span>
+                                                        <span className="text-lg w-full font-medium">{manga.title.slice(0, 20)}...</span>
                                                     ) : (
-                                                        <span className='text-lg w-full font-medium'>{manga.title}</span>
+                                                        <span className="text-lg w-full font-medium">{manga.title}</span>
                                                     )}
                                                 </div>
 
                                                 <div>
-                                                    <div className='flex flex-row items-center space-x-3'>
+                                                    <div className="flex flex-row items-center space-x-3">
                                                         <div><IoIosEye /></div>
-                                                        {manga.vue_manga != 0 ? <div className='text-sm'>{manga.vue_manga}</div> : <div className='text-sm'>0</div>}
+                                                        {manga.vue_manga != 0 ? <div className="text-sm">{manga.vue_manga}</div> : <div className="text-sm">0</div>}
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className='absolute bg-black ' style={{ width: '15.9rem', height: '6rem', top: '13rem', zIndex: '10', opacity: '0.6', borderBottomRightRadius: '10px', borderBottomLeftRadius: '10px' }}></div>
+                                            <div className="absolute bg-black " style={{ width: "15.9rem", height: "6rem", top: "13rem", zIndex: "10", opacity: "0.6", borderBottomRightRadius: "10px", borderBottomLeftRadius: "10px" }}></div>
                                         </div>
                                         : null
                                 ))}

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useRef, useState, useEffect } from "react";
 import {
@@ -10,17 +10,6 @@ import {
   NavbarItem,
   NavbarMenuItem,
 } from "@nextui-org/navbar";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
 import { Button } from "@nextui-org/button";
 import { Kbd } from "@nextui-org/kbd";
 import { Link } from "@nextui-org/link";
@@ -32,16 +21,13 @@ import clsx from "clsx";
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import {
-  TwitterIcon,
   GithubIcon,
-  DiscordIcon,
-  HeartFilledIcon,
   SearchIcon,
   Logo,
 } from "@/components/icons";
 import { IoIosPerson } from "react-icons/io";
 
-import { useAuth } from '@/app/contexts/authContext';
+import { useAuth } from "@/app/contexts/authContext";
 
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar, User, AvatarIcon } from "@nextui-org/react";
 import { InputFile } from "@/components/ui/input";
@@ -51,13 +37,13 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure
 
 export const Navbar = () => {
   const { user, logout } = useAuth();
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
     // Vérifie si l'on est bien dans un environnement navigateur
-    if (typeof window !== 'undefined') {
-      const usernameActive = sessionStorage.getItem('username');
-      setUsername(usernameActive || ''); // Met à jour le state avec la valeur de sessionStorage, ou une chaîne vide si elle est nulle
+    if (typeof window !== "undefined") {
+      const usernameActive = sessionStorage.getItem("username");
+      setUsername(usernameActive || ""); // Met à jour le state avec la valeur de sessionStorage, ou une chaîne vide si elle est nulle
     }
   }, []); // Le tableau de dépendances vide signifie que ce code ne s'exécute qu'une fois, au montage du composant
 
@@ -65,7 +51,7 @@ export const Navbar = () => {
   const inputFileRef = useRef(null);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [backdrop, setBackdrop] = React.useState('opaque')
+  const [backdrop, setBackdrop] = React.useState("opaque")
 
   const handleClick = (action) => () => {
     if (action === "blur") {
@@ -113,24 +99,24 @@ export const Navbar = () => {
 
   const siteUrl = {
     accueil: {
-      title: 'Accueil',
-      path: '/'
+      title: "Accueil",
+      path: "/"
     },
     apropos: {
-      title: 'A propos',
-      path: '/about'
+      title: "A propos",
+      path: "/about"
     },
     mangas: {
-      title: 'Mangas',
-      path: '/mangas'
+      title: "Mangas",
+      path: "/mangas"
     },
     actualites: {
-      title: 'Actualités',
-      path: '/actualite'
+      title: "Actualités",
+      path: "/actualite"
     },
     contact: {
-      title: 'Contact',
-      path: '/contact'
+      title: "Contact",
+      path: "/contact"
     },
   }
 
@@ -208,7 +194,7 @@ export const Navbar = () => {
                       id="picture"
                       type="file"
                       ref={inputFileRef}
-                      style={{ display: 'none' }} // Masquer l'élément input
+                      style={{ display: "none" }} // Masquer l'élément input
                       onChange={handleFileChange}
                       accept="image/*"
                     />
@@ -226,12 +212,12 @@ export const Navbar = () => {
               )}
             </ModalContent>
           </Modal>
-          {username == '' ? (
+          {username == "" ? (
             <Button
               // isExternal
               as={Link}
               className="text-sm font-normal text-default-600 bg-default-100"
-              href={'/connexion'}
+              href={"/connexion"}
               startContent={<IoIosPerson className="text-blue-600" />}
               variant="flat"
             >

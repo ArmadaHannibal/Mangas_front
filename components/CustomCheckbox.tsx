@@ -1,6 +1,6 @@
 import React from "react";
 import {useCheckbox, Chip, VisuallyHidden, tv} from "@nextui-org/react";
-import {CheckIcon} from './CheckIcon'
+import {CheckIcon} from "./CheckIcon"
 
 const checkbox = tv({
   slots: {

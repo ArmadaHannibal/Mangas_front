@@ -1,33 +1,30 @@
-import { IoIosPerson } from "react-icons/io";
 import { Tabs, Tab, Card, CardBody, CardHeader } from "@nextui-org/react";
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState } from "react";
 // Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import { Image } from "@nextui-org/react";
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/pagination";
 
-import '../app/style/swiperstylebottom.css';
+import "../app/style/swiperstylebottom.css";
 
 // import required modules
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-
-import { cn } from "@/utils/cn";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 export const Navbarsecond = ({ mangas }) => {
 
     const categoryAll = mangas.filter(manga =>
-        manga.categorie_manga === 'Manga' ||
-        manga.categorie_manga === 'Anime' ||
-        manga.categorie_manga === 'Novels'
+        manga.categorie_manga === "Manga" ||
+        manga.categorie_manga === "Anime" ||
+        manga.categorie_manga === "Novels"
     );
-    const categoryMangas = mangas.filter(manga => manga.categorie_manga === 'Manga');
-    const categoryanime = mangas.filter(manga => manga.categorie_manga === 'Anime');
-    const categorylnove = mangas.filter(manga => manga.categorie_manga === 'Novels');
+    const categoryMangas = mangas.filter(manga => manga.categorie_manga === "Manga");
+    const categoryanime = mangas.filter(manga => manga.categorie_manga === "Anime");
+    const categorylnove = mangas.filter(manga => manga.categorie_manga === "Novels");
 
 
     let tabs = [
@@ -35,7 +32,7 @@ export const Navbarsecond = ({ mangas }) => {
             id: "tous",
             label: "Tous",
             content: {
-                id: 'TousAnnime',
+                id: "TousAnnime",
                 contentContent: categoryAll.length !== 0 ? (
                     categoryAll.map(manga => (
                         <SwiperSlide><div key={manga.id}>
@@ -60,15 +57,15 @@ export const Navbarsecond = ({ mangas }) => {
                                             padding: 1rem; /* p-4 */
                                             border: 1px solid transparent;
                                             border-color: #1a1a1a; /* dark:border-neutral-800 */
-                                            background-image: url('http://127.0.0.1:8000${manga.cover_image}');
+                                            background-image: url("http://127.0.0.1:8000${manga.cover_image}");
                                             background-size: cover;
                                             transition: all 0.5s;
                                             background-repeat: no-repeat;
                                             background-position: center;
                                         }
                                         .card::before {
-                                            content: '';
-                                            background-image: url('http://127.0.0.1:8000${manga.image_content_1}');
+                                            content: "";
+                                            background-image: url("http://127.0.0.1:8000${manga.image_content_1}");
                                             position: fixed;
                                             top: 0;
                                             right: 0;
@@ -78,19 +75,19 @@ export const Navbarsecond = ({ mangas }) => {
                                             z-index: -1;
                                         }
                                         .card:hover {
-                                            background-image: url('http://127.0.0.1:8000${manga.image_content_1}');
+                                            background-image: url("http://127.0.0.1:8000${manga.image_content_1}");
                                         }
                                     `}</style>
                                     <div className="text relative z-50">
                                         {manga.title.length > 18 ? (
-                                            <h2 className='font-bold text-lg md:text-xl text-gray-50 relative text-left'>{manga.title.slice(0, 20)}...</h2>
+                                            <h2 className="font-bold text-lg md:text-xl text-gray-50 relative text-left">{manga.title.slice(0, 20)}...</h2>
                                         ) : (
-                                            <h2 className='font-bold text-lg md:text-xl text-gray-50 relative text-left'>{manga.title}</h2>
+                                            <h2 className="font-bold text-lg md:text-xl text-gray-50 relative text-left">{manga.title}</h2>
                                         )}
                                         {manga.description.length > 50 ? (
-                                            <p className='font-normal text-sm text-left text-gray-50 relative my-4'>{manga.description.slice(0, 150)}...</p>
+                                            <p className="font-normal text-sm text-left text-gray-50 relative my-4">{manga.description.slice(0, 150)}...</p>
                                         ) : (
-                                            <p className='font-normal text-sm text-left text-gray-50 relative my-4'>{manga.description}</p>
+                                            <p className="font-normal text-sm text-left text-gray-50 relative my-4">{manga.description}</p>
                                         )}
                                     </div>
                                 </div>
@@ -106,7 +103,7 @@ export const Navbarsecond = ({ mangas }) => {
             id: "mangas",
             label: "Mangas",
             content: {
-                id: 'MangasAnime',
+                id: "MangasAnime",
                 contentContent: categoryMangas.length !== 0 ? (
                     categoryMangas.map(manga => (
                         <SwiperSlide><div key={manga.id}>
@@ -131,15 +128,15 @@ export const Navbarsecond = ({ mangas }) => {
                                             padding: 1rem; /* p-4 */
                                             border: 1px solid transparent;
                                             border-color: #1a1a1a; /* dark:border-neutral-800 */
-                                            background-image: url('http://127.0.0.1:8000${manga.cover_image}');
+                                            background-image: url("http://127.0.0.1:8000${manga.cover_image}");
                                             background-size: cover;
                                             transition: all 0.5s;
                                             background-repeat: no-repeat;
                                             background-position: center;
                                         }
                                         .card::before {
-                                            content: '';
-                                            background-image: url('http://127.0.0.1:8000${manga.image_content_1}');
+                                            content: "";
+                                            background-image: url("http://127.0.0.1:8000${manga.image_content_1}");
                                             position: fixed;
                                             top: 0;
                                             right: 0;
@@ -149,19 +146,19 @@ export const Navbarsecond = ({ mangas }) => {
                                             z-index: -1;
                                         }
                                         .card:hover {
-                                            background-image: url('http://127.0.0.1:8000${manga.image_content_1}');
+                                            background-image: url("http://127.0.0.1:8000${manga.image_content_1}");
                                         }
                                     `}</style>
                                     <div className="text relative z-50">
                                         {manga.title.length > 18 ? (
-                                            <h2 className='font-bold text-lg md:text-xl text-gray-50 relative text-left'>{manga.title.slice(0, 20)}...</h2>
+                                            <h2 className="font-bold text-lg md:text-xl text-gray-50 relative text-left">{manga.title.slice(0, 20)}...</h2>
                                         ) : (
-                                            <h2 className='font-bold text-lg md:text-xl text-gray-50 relative text-left'>{manga.title}</h2>
+                                            <h2 className="font-bold text-lg md:text-xl text-gray-50 relative text-left">{manga.title}</h2>
                                         )}
                                         {manga.description.length > 50 ? (
-                                            <p className='font-normal text-sm text-left text-gray-50 relative my-4'>{manga.description.slice(0, 150)}...</p>
+                                            <p className="font-normal text-sm text-left text-gray-50 relative my-4">{manga.description.slice(0, 150)}...</p>
                                         ) : (
-                                            <p className='font-normal text-sm text-left text-gray-50 relative my-4'>{manga.description}</p>
+                                            <p className="font-normal text-sm text-left text-gray-50 relative my-4">{manga.description}</p>
                                         )}
                                     </div>
                                 </div>
@@ -177,7 +174,7 @@ export const Navbarsecond = ({ mangas }) => {
             id: "anime",
             label: "Anime",
             content: {
-                id: 'Animeanime',
+                id: "Animeanime",
                 contentContent: categoryanime.length !== 0 ? (
                     categoryanime.map(manga => (
                         <SwiperSlide><div key={manga.id}>
@@ -202,15 +199,15 @@ export const Navbarsecond = ({ mangas }) => {
                                             padding: 1rem; /* p-4 */
                                             border: 1px solid transparent;
                                             border-color: #1a1a1a; /* dark:border-neutral-800 */
-                                            background-image: url('http://127.0.0.1:8000${manga.cover_image}');
+                                            background-image: url("http://127.0.0.1:8000${manga.cover_image}");
                                             background-size: cover;
                                             transition: all 0.5s;
                                             background-repeat: no-repeat;
                                             background-position: center;
                                         }
                                         .card::before {
-                                            content: '';
-                                            background-image: url('http://127.0.0.1:8000${manga.image_content_1}');
+                                            content: "";
+                                            background-image: url("http://127.0.0.1:8000${manga.image_content_1}");
                                             position: fixed;
                                             top: 0;
                                             right: 0;
@@ -220,19 +217,19 @@ export const Navbarsecond = ({ mangas }) => {
                                             z-index: -1;
                                         }
                                         .card:hover {
-                                            background-image: url('http://127.0.0.1:8000${manga.image_content_1}');
+                                            background-image: url("http://127.0.0.1:8000${manga.image_content_1}");
                                         }
                                     `}</style>
                                     <div className="text relative z-50">
                                         {manga.title.length > 18 ? (
-                                            <h2 className='font-bold text-lg md:text-xl text-gray-50 relative text-left'>{manga.title.slice(0, 20)}...</h2>
+                                            <h2 className="font-bold text-lg md:text-xl text-gray-50 relative text-left">{manga.title.slice(0, 20)}...</h2>
                                         ) : (
-                                            <h2 className='font-bold text-lg md:text-xl text-gray-50 relative text-left'>{manga.title}</h2>
+                                            <h2 className="font-bold text-lg md:text-xl text-gray-50 relative text-left">{manga.title}</h2>
                                         )}
                                         {manga.description.length > 50 ? (
-                                            <p className='font-normal text-sm text-left text-gray-50 relative my-4'>{manga.description.slice(0, 150)}...</p>
+                                            <p className="font-normal text-sm text-left text-gray-50 relative my-4">{manga.description.slice(0, 150)}...</p>
                                         ) : (
-                                            <p className='font-normal text-sm text-left text-gray-50 relative my-4'>{manga.description}</p>
+                                            <p className="font-normal text-sm text-left text-gray-50 relative my-4">{manga.description}</p>
                                         )}
                                     </div>
                                 </div>
@@ -248,7 +245,7 @@ export const Navbarsecond = ({ mangas }) => {
             id: "novels",
             label: "Novels",
             content: {
-                id: 'NovelsAnime',
+                id: "NovelsAnime",
                 contentContent: categorylnove.length !== 0 ? (
                     categorylnove.map(manga => (
                         <SwiperSlide><div key={manga.id}>
@@ -273,15 +270,15 @@ export const Navbarsecond = ({ mangas }) => {
                                             padding: 1rem; /* p-4 */
                                             border: 1px solid transparent;
                                             border-color: #1a1a1a; /* dark:border-neutral-800 */
-                                            background-image: url('http://127.0.0.1:8000${manga.cover_image}');
+                                            background-image: url("http://127.0.0.1:8000${manga.cover_image}");
                                             background-size: cover;
                                             transition: all 0.5s;
                                             background-repeat: no-repeat;
                                             background-position: center;
                                         }
                                         .card::before {
-                                            content: '';
-                                            background-image: url('http://127.0.0.1:8000${manga.image_content_1}');
+                                            content: "";
+                                            background-image: url("http://127.0.0.1:8000${manga.image_content_1}");
                                             position: fixed;
                                             top: 0;
                                             right: 0;
@@ -291,19 +288,19 @@ export const Navbarsecond = ({ mangas }) => {
                                             z-index: -1;
                                         }
                                         .card:hover {
-                                            background-image: url('http://127.0.0.1:8000${manga.image_content_1}');
+                                            background-image: url("http://127.0.0.1:8000${manga.image_content_1}");
                                         }
                                     `}</style>
                                     <div className="text relative z-50">
                                         {manga.title.length > 18 ? (
-                                            <h2 className='font-bold text-lg md:text-xl text-gray-50 relative text-left'>{manga.title.slice(0, 20)}...</h2>
+                                            <h2 className="font-bold text-lg md:text-xl text-gray-50 relative text-left">{manga.title.slice(0, 20)}...</h2>
                                         ) : (
-                                            <h2 className='font-bold text-lg md:text-xl text-gray-50 relative text-left'>{manga.title}</h2>
+                                            <h2 className="font-bold text-lg md:text-xl text-gray-50 relative text-left">{manga.title}</h2>
                                         )}
                                         {manga.description.length > 50 ? (
-                                            <p className='font-normal text-sm text-left text-gray-50 relative my-4'>{manga.description.slice(0, 150)}...</p>
+                                            <p className="font-normal text-sm text-left text-gray-50 relative my-4">{manga.description.slice(0, 150)}...</p>
                                         ) : (
-                                            <p className='font-normal text-sm text-left text-gray-50 relative my-4'>{manga.description}</p>
+                                            <p className="font-normal text-sm text-left text-gray-50 relative my-4">{manga.description}</p>
                                         )}
                                     </div>
                                 </div>
@@ -333,19 +330,19 @@ export const Navbarsecond = ({ mangas }) => {
                                         clickable: true,
                                     }}
                                     breakpoints={{
-                                        '@0.00': {
+                                        "@0.00": {
                                             slidesPerView: 1,
                                             spaceBetween: 10,
                                         },
-                                        '@0.75': {
+                                        "@0.75": {
                                             slidesPerView: 2,
                                             spaceBetween: 20,
                                         },
-                                        '@1.00': {
+                                        "@1.00": {
                                             slidesPerView: 3,
                                             spaceBetween: 40,
                                         },
-                                        '@1.50': {
+                                        "@1.50": {
                                             slidesPerView: 4,
                                             spaceBetween: 50,
                                         },

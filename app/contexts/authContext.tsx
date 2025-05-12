@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { createContext, useContext, useState, ReactNode, useRef, useEffect } from 'react';
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
+import { createContext, useContext, useState, ReactNode, useRef, useEffect } from "react";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 interface AuthContextType {
     user: { username: string } | null;
@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                         clearInterval(countdownRef.current);
                         alert("User is inactive for 1 minute");
                         sessionStorage.clear();
-                        router.push('/');
+                        router.push("/");
                         return 60;
                     }
                     return prev - 1;
@@ -49,15 +49,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             }, 1000);
         };
 
-        window.addEventListener('mousemove', handleActivity);
-        window.addEventListener('keypress', handleActivity);
-        window.addEventListener('click', handleActivity);
+        window.addEventListener("mousemove", handleActivity);
+        window.addEventListener("keypress", handleActivity);
+        window.addEventListener("click", handleActivity);
 
         // Cleanup event listeners on unmount
         return () => {
-            window.removeEventListener('mousemove', handleActivity);
-            window.removeEventListener('keypress', handleActivity);
-            window.removeEventListener('click', handleActivity);
+            window.removeEventListener("mousemove", handleActivity);
+            window.removeEventListener("keypress", handleActivity);
+            window.removeEventListener("click", handleActivity);
             clearTimeout(timeoutRef.current);
             clearInterval(countdownRef.current);
         };
@@ -65,16 +65,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     // Fonction pour démarrer une session
     function startSession(username) {
-        sessionStorage.setItem('username', username);
+        sessionStorage.setItem("username", username);
     }
 
     // Fonction pour vérifier si la session est expirée
     // function checkSession() {
     //     const now = Date.now();
-    //     const expiryTime = sessionStorage.getItem('expiryTime');
+    //     const expiryTime = sessionStorage.getItem("expiryTime");
 
     //     if (now >= expiryTime) {
-    //         alert('Session expirée');
+    //         alert("Session expirée");
     //         sessionStorage.clear(); // Nettoyer la session
     //     }
     // }
@@ -82,55 +82,55 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     // Fonction pour détruire la session
     // function endSession() {
     //     sessionStorage.clear();
-    //     alert('Session terminée');
+    //     alert("Session terminée");
     // }
 
-    // Démarrer une session de 30 secondes pour l'utilisateur 'JohnDoe'
+    // Démarrer une session de 30 secondes pour l"utilisateur "JohnDoe"
     if (user) {
         startSession(user.username);
     }
-    console.log('actuelle');
+    console.log("actuelle");
     console.log(user);
     
 
     const login = async (username: string, password: string) => {
         try {
-            const response = await axios.post('http://localhost:8000/connexion/', {
+            const response = await axios.post("http://localhost:8000/connexion/", {
                 username,
                 password,
             });
-            if (response.data.status === 'success') {
+            if (response.data.status === "success") {
                 setUser({ username });
-                router.push('/dashboard');
+                router.push("/dashboard");
             } else {
-                alert('Login failed');
+                alert("Login failed");
             }
         } catch (error) {
-            alert('Login failed');
+            alert("Login failed");
         }
     };
 
     const signup = async (username: string, email: string, password: string) => {
         // try {
-        //     const response = await axios.post('http://localhost:8000/api/signup/', {
+        //     const response = await axios.post("http://localhost:8000/api/signup/", {
         //         username,
         //         email,
         //         password,
         //     });
-        //     if (response.data.status === 'success') {
+        //     if (response.data.status === "success") {
         //         setUser({ username });
-        //         router.push('/dashboard');
+        //         router.push("/dashboard");
         //     } else {
-        //         alert('Signup failed');
+        //         alert("Signup failed");
         //     }
         // } catch (error) {
-        //     alert('Signup failed');
+        //     alert("Signup failed");
         // }
     };
 
     const logout = () => {
         setUser(null);
-        router.push('/connexion');
+        router.push("/connexion");
         sessionStorage.clear();
     };
 
@@ -144,7 +144,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 export const useAuth = () => {
     const context = useContext(AuthContext);
     if (!context) {
-        throw new Error('useAuth must be used within an AuthProvider');
+        throw new Error("useAuth must be used within an AuthProvider");
     }
     return context;
 };

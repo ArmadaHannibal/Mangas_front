@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useAuth } from '../contexts/authContext';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useAuth } from "../contexts/authContext";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export default function Dashboard() {
     const { user, logout } = useAuth();
@@ -10,7 +10,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         const fetchSession = async () => {
-            const response = await axios.get('/api/get-session');
+            const response = await axios.get("/api/get-session");
             setUser(response.data.session);
         };
 
@@ -18,7 +18,7 @@ export default function Dashboard() {
     }, []);
     return (
         <div>
-            <h1>Bienvenue, {user ? user.username : 'Utilisateur'}</h1>
+            <h1>Bienvenue, {user ? user.username : "Utilisateur"}</h1>
             <button onClick={logout} className="bg-red-500 text-white rounded-lg p-2.5">
                 Logout
             </button>

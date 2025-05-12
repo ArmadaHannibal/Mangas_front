@@ -26,7 +26,7 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
   };
 
   return (
-    <div className="p-10 grid grid-cols-1 md:grid-cols-3 max-w-7xl mx-auto gap-4 relative" style={{width: '80rem', height: '38rem'}}>
+    <div className="p-10 grid grid-cols-1 md:grid-cols-3 max-w-7xl mx-auto gap-4 relative" style={{width: "80rem", height: "38rem"}}>
       {cards.map((card, i) => (
         i < 5 ?
             <div key={i} className={cn(card.className, "")}>
